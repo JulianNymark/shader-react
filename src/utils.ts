@@ -160,12 +160,16 @@ const animateScene = (
   gl.useProgram(shaderProgram);
 
   const uScalingFactor = gl.getUniformLocation(shaderProgram, "uScalingFactor");
-  const uGlobalColor = gl.getUniformLocation(shaderProgram, "uGlobalColor");
+  const u_globalColor = gl.getUniformLocation(shaderProgram, "u_globalColor");
   const uRotationVector = gl.getUniformLocation(shaderProgram, "uRotationVector");
+  const u_time = gl.getUniformLocation(shaderProgram, "u_time");
+  const u_resolution = gl.getUniformLocation(shaderProgram, "u_resolution");
 
+  gl.uniform1f(u_time, previousTime);
+  gl.uniform2fv(u_resolution, [dimension.width, dimension.height]);
   gl.uniform2fv(uScalingFactor, currentScale);
   gl.uniform2fv(uRotationVector, currentRotation);
-  gl.uniform4fv(uGlobalColor, [0.1, 0.7, 0.2, 1.0]);
+  gl.uniform4fv(u_globalColor, [0.7, 0.7, 0.2, 1.0]);
 
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
@@ -183,12 +187,12 @@ const animateScene = (
 
   gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
 
-  window.requestAnimationFrame(function (currentTime) {
-    let deltaAngle = ((currentTime - previousTime) / 1000.0) * degreesPerSecond;
+  window.requestAnimationFrame(function (currTime) {
+    let deltaAngle = ((currTime - previousTime) / 1000.0) * degreesPerSecond;
 
     currentAngle = (currentAngle + deltaAngle) % 360;
 
-    previousTime = currentTime;
+    previousTime = currTime;
     animateScene(glCanvas, shaderProgram, previousTime, currentAngle);
   });
 };
