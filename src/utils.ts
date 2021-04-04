@@ -8,10 +8,10 @@ interface Shader {
   code: string;
 }
 
-interface Dimension {
-  width: number;
-  height: number;
-}
+// interface Dimension {
+//   width: number;
+//   height: number;
+// }
 
 const getCanvas = (glCanvas: HTMLCanvasElement) => {
   const gl = glCanvas.getContext("webgl");
@@ -128,18 +128,18 @@ const animateScene = (
   const currentScale = [1.0, aspectRatio];
 
   const vertexArray = new Float32Array([
-    -0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    -0.5,
-    -0.5,
-    0.5,
-    0.5,
-    -0.5,
-    -0.5,
-    -0.5,
+    -1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    -1.0,
+    -1.0,
+    1.0,
+    1.0,
+    -1.0,
+    -1.0,
+    -1.0,
   ]);
 
   const vertexBuffer = gl.createBuffer();

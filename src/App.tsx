@@ -12,5 +12,5 @@ export const App = () => {
     rotatingCube(canvas);
   }, []);
 
-  return <canvas id="glcanvas" width="640" height="480"></canvas>;
+  return <canvas id="glcanvas" width="1024" height="1024"></canvas>;
 };
